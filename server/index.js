@@ -25,6 +25,7 @@ massive({
 })
 .then(dbInstance => {
     app.set('db', dbInstance)
+    console.log('db connection successful AF')
     app.listen(PORT, () => console.log(`Server is riding port ${PORT}`))
 })
 .catch(err => console.log(err))
