@@ -5,6 +5,7 @@ const session = require('express-session')
 const app = express()
 const authCtrl = require('./controllers/authController')
 
+
 app.use(express.json())
 
 const {PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
@@ -16,6 +17,9 @@ app.use(session({
 }))
 
 app.post('/auth/register', authCtrl.register)
+app.post('/auth/login', authCtrl.login);
+app.get('/auth/logout', authCtrl.logout);
+
 
 massive({
     connectionString: CONNECTION_STRING,
