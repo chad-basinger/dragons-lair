@@ -10,6 +10,9 @@ export default class Container extends Component {
       treasures: {},
     }
     this.addMyTreasure = this.addMyTreasure.bind(this)
+    this.getDragonTreasure = this.getDragonTreasure.bind(this)
+    this.getMyTreasure = this.getMyTreasure.bind(this)
+    this.getAllTreasure = this.getAllTreasure.bind(this)
   }
 
   componentDidUpdate(prevProps) {
@@ -34,6 +37,16 @@ export default class Container extends Component {
 
   getAllTreasure() {
     // axios GET to /api/treasure/all here
+    axios.get('api/treasure/all')
+    .then(treasure => {
+      this.setState({
+        treasures: {
+          ...this.state.treasures,
+          all: treasure.data
+        }
+      })
+    })
+    .catch(err => console.log(err.response.request.response))
   }
 
   getMyTreasure() {
